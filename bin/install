@@ -1,0 +1,22 @@
+var path = require('path');
+var ghdownload = require('github-download')
+  , exec = require('exec');
+
+ghdownload("https://github.com/aurelia/skeleton-navigation.git#master", 'public/app')
+.on('dir', function(dir) {
+  console.log(dir)
+})
+.on('file', function(file) {
+  console.log(file)
+})
+.on('zip', function(zipUrl) { //only emitted if Github API limit is reached and the zip file is downloaded
+  console.log(zipUrl)
+})
+.on('error', function(err) {
+  console.error(err)
+})
+.on('end', function() {
+  exec('tree', function(err, stdout, sderr) {
+    console.log(stdout)
+  })
+});
