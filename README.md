@@ -60,7 +60,12 @@ In order to run them you need to make sure protractor and the necessary webdrive
   webdriver-manager update
   ```
 
-After that, from the project root, just type following:
+Now start up the application in one Terminal with from the project root with the command:
+  ```shell
+  node app.js
+  ```
+
+After that, in another Terminal, from the project root, just type following:
   ```shell
   protractor protractor.conf.js
   ```
