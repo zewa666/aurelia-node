@@ -49,3 +49,18 @@ For more info please visit the official site: http://www.aurelia.io/
 10. Browse to [http://localhost:7000](http://localhost:7000) to see the app. You can make changes in the code found under `src` and the browser should auto-refresh itself as you save files.
 
   >**Note:** If you prefer to run the node app without Gulp just do ``` node app.js ```
+
+
+## E2E Testing
+An example of how to use Protractor for E2E Testing with Aurelia has been added.
+In order to run them you need to make sure protractor and the necessary webdriver is installed
+
+  ```shell
+  npm install -g protractor
+  webdriver-manager update
+  ```
+
+After that, from the project root, just type following:
+  ```shell
+  protractor protractor.conf.js
+  ```
