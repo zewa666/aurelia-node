@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var swig = require('swig');
 
 /*var routes = require('./routes/index');
 var users = require('./routes/users');*/
@@ -17,6 +18,8 @@ var allowCrossDomain = function(req, res, next) {
 };
 
 // view engine setup
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
