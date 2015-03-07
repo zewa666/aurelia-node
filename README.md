@@ -51,6 +51,27 @@ For more info please visit the official site: http://www.aurelia.io/
   >**Note:** If you prefer to run the node app without Gulp just do ``` node app.js ```
 
 
+## Serving views from Node
+
+You can easily serve your Views from the Node Backend. This example uses the [Swig](http://paularmstrong.github.io/swig/) Templating Engine, but you are of course free to choose whatever you want :)
+If you take a look at the folder `views/welcome.html` you'll see the welcome View being served by NodeJS. The route association can be found in `routes/api.js`. The code below demonstrates how to reply with the html file.
+
+```
+/* GET welcome view */
+router.get('/views/welcome', function(req, res) {
+  res.render('welcome', {nodePort: require('../app').get('port')});
+});
+```
+
+In order to use this in Aurelia open the file `public/app/src/welcome.js` and add following method to the Welcome Class. This will make sure that the VM requests the server-side View during the navigation instruciton.
+
+```
+getViewStrategy() {
+  return '../../views/welcome';
+}
+```
+
+
 ## E2E Testing
 An example of how to use Protractor for E2E Testing with Aurelia has been added.
 In order to run them you need to make sure protractor and the necessary webdriver is installed
