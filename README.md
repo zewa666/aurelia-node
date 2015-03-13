@@ -1,6 +1,6 @@
 # Aurelia-Node
 
-This is a NodeJS Express App bundled with the [Skeleton App](https://github.com/aurelia/skeleton-navigation) of the [Aurelia](http://www.aurelia.io/) platform. It sets up a standard navigation-style app using gulp to build your ES6 code with the 6to5 compiler. Karma/Jasmine testing is also configured.
+This is a NodeJS Express App bundled with the [Skeleton App](https://github.com/aurelia/skeleton-navigation) of the [Aurelia](http://www.aurelia.io/) platform. It sets up a standard navigation-style app using gulp to build your ES6 code with the babel compiler. Karma/Jasmine testing is also configured.
 
 For more info please visit the official site: http://www.aurelia.io/
 

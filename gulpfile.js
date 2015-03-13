@@ -2,12 +2,12 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var del = require('del');
 var vinylPaths = require('vinyl-paths');
-var to5 = require('gulp-6to5');
+var babel = require('gulp-babel');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var yuidoc = require("gulp-yuidoc");
 var changelog = require('conventional-changelog');
-var assign = Object.assign || require('object.assign');
+var assign = Object.assign || require('object-assign');
 var fs = require('fs');
 var bump = require('gulp-bump');
 var browserSync = require('browser-sync');
@@ -36,7 +36,6 @@ var compilerOptions = {
   sourceRoot: '',
   moduleRoot: '',
   moduleIds: false,
-  runtime: false,
   experimental: false,
   format: {
     comments: false,
@@ -61,7 +60,7 @@ gulp.task('build-system', function () {
   return gulp.src(path.source)
     .pipe(plumber())
     .pipe(changed(path.output, {extension: '.js'}))
-    .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
+    .pipe(babel(assign({}, compilerOptions, {modules:'system'})))
     .pipe(gulp.dest(path.output));
 });
 
@@ -133,7 +132,7 @@ function reportChange(event){
 gulp.task('nodemon', function (cb) {
   return nodemon({
     script: 'app.js'
-  }).on('start', function () {
+  }).on('end', function () {
       cb();
   });
 });
