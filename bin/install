@@ -1,6 +1,6 @@
 var path = require('path');
 var ghdownload = require('github-download')
-  , exec = require('exec');
+  , execFile = require('child_process').execFile;
 
 ghdownload("https://github.com/aurelia/skeleton-navigation.git#master", 'public/app')
 .on('dir', function(dir) {
@@ -16,7 +16,7 @@ ghdownload("https://github.com/aurelia/skeleton-navigation.git#master", 'public/
   console.error(err)
 })
 .on('end', function() {
-  exec('tree', function(err, stdout, sderr) {
+  execFile('tree', function(err, stdout, sderr) {
     console.log(stdout)
   })
 });
