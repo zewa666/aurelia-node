@@ -1,6 +1,6 @@
 {
   "name": "aurelia-node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Example of using Aurelia within a NodeJS Express App",
   "scripts": {
     "start": "gulp watch"
