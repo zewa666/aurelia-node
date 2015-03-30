@@ -118,14 +118,9 @@ gulp.task('update-own-deps', function(){
 
 gulp.task('browser-sync', ['build', 'nodemon'], function() {
   browserSync.init({
-
     files: ['public/**/*.*'],
-
     proxy: 'http://localhost:9000',
-
     port: 7000,
-
-    // Which browser should we launch?
     browser: ['google chrome']
   });
 });
