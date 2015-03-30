@@ -116,13 +116,18 @@ gulp.task('update-own-deps', function(){
   tools.updateOwnDependenciesFromLocalRepositories();
 });
 
-gulp.task('serve', ['build'], function(done) {
-  browserSync.init(null, {
-    proxy: "http://localhost:9000",
-        files: ["public/**/*.*"],
-        browser: "google chrome",
-        port: 7000,
-  }, done);
+gulp.task('browser-sync', ['build', 'nodemon'], function() {
+  browserSync.init({
+
+    files: ['public/**/*.*'],
+
+    proxy: 'http://localhost:9000',
+
+    port: 7000,
+
+    // Which browser should we launch?
+    browser: ['google chrome']
+  });
 });
 
 function reportChange(event){
@@ -130,14 +135,27 @@ function reportChange(event){
 }
 
 gulp.task('nodemon', function (cb) {
+  var called = false;
   return nodemon({
-    script: 'app.js'
-  }).on('end', function () {
+    script: 'app.js',
+  })
+  .on('start', function onStart() {
+    if (!called) {
       cb();
+    }
+    called = true;
+  })
+  .on('restart', function onRestart() {
+
+    setTimeout(function reload() {
+      browserSync.reload({
+        stream: false
+      });
+    }, 500);
   });
 });
 
-gulp.task('watch', ['nodemon', 'serve'], function() {
+gulp.task('watch', ['nodemon', 'browser-sync'], function() {
   gulp.watch(path.source, ['build-system', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.html, ['build-html', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.style, browserSync.reload).on('change', reportChange);
