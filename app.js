@@ -4,9 +4,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 
-/*var routes = require('./routes/index');
-var users = require('./routes/users');*/
-
 var app = express();
 
 var allowCrossDomain = function(req, res, next) {
@@ -38,7 +35,6 @@ app.set('port', process.env.PORT || 9000);
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
-
 
 
 module.exports = app;

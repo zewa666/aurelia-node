@@ -25,28 +25,15 @@ var path = {
 };
 
 var compilerOptions = {
-  filename: '',
-  filenameRelative: '',
-  blacklist: [],
-  whitelist: [],
-  modules: '',
-  sourceMap: true,
-  sourceMapName: '',
-  sourceFileName: '',
-  sourceRoot: '',
-  moduleRoot: '',
+  modules: 'system',
   moduleIds: false,
-  experimental: false,
-  format: {
-    comments: false,
-    compact: false,
-    indent: {
-      parentheses: true,
-      adjustMultilineComment: true,
-      style: "  ",
-      base: 0
-    }
-  }
+  comments: false,
+  compact: false,
+  stage:2,
+  optional: [
+    "es7.decorators",
+    "es7.classProperties"
+  ]
 };
 
 var jshintConfig = {esnext:true};
@@ -132,7 +119,7 @@ function reportChange(event){
 gulp.task('nodemon', function (cb) {
   var called = false;
   return nodemon({
-    script: 'app.js',
+    script: 'app.js'
   })
   .on('start', function onStart() {
     if (!called) {

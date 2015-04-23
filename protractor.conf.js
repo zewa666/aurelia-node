@@ -12,6 +12,10 @@ exports.config = {
   seleniumAddress: 'http://0.0.0.0:4444',
   specs: ['specs/e2e/*.js'],
 
+  plugins: [{
+    path: 'aurelia.protractor.js'
+  }],
+
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
     showColors: true,
